@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab969b2b-3e36-4f37-9504-c7ada94dc6e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/images/Categorias.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Categorias.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Estabelecimentos.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Estabelecimentos.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Novo_Categoria.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Novo_Categoria.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Novo_Estabelecimento.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/images/Novo_Estabelecimento.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CadastroNovosUsuarios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Estabelecimentos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers/eAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/eAdmin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/usuario.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/usuario.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/addpostagem.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addpostagem.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/categorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/editcategorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editcategorias.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/editpostagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editpostagens.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/index.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/postagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/postagens.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/categorias/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias/index.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/categorias/postagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias/postagens.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/images/Categorias.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/images/Estabelecimentos.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/images/Novo_Categoria.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/images/Novo_Estabelecimento.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/images/Novo_Estabelecimento.png" beforeDir="false" afterPath="$PROJECT_DIR$/views/images/Novo_Estabelecimento.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/postagem/index.handlebars" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/usuarios/login.handlebars" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +36,13 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,6 +72,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\views\admin" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\images" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -67,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582898738642</updated>
-      <workItem from="1582898750263" duration="8445000" />
+      <workItem from="1582898750263" duration="25066000" />
     </task>
     <servers />
   </component>
@@ -95,5 +117,9 @@
       <screen x="0" y="0" width="1600" height="900" />
     </state>
     <state x="496" y="273" key="com.intellij.ide.util.TipDialog/0.0.1600.900@0.0.1600.900" timestamp="1582899389624" />
+    <state x="463" y="190" width="672" height="678" key="search.everywhere.popup" timestamp="1582925149672">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="463" y="190" width="672" height="678" key="search.everywhere.popup/0.0.1600.900@0.0.1600.900" timestamp="1582925149672" />
   </component>
 </project>

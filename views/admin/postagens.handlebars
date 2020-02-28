@@ -1,24 +1,39 @@
-<h2>Lista de postagens: </h2>
-<hr>
-<a href="/admin/postagens/add"><button class="btn btn-success">Nova postagem</button> </a>
-
-{{#each postagens}}
-<div class="card mt-4">
-    <div class="card-body">
-        <h4>{{titulo}}</h4>
-        <p>Descrição{{descricao}}</p>
-        <small>Data: {{data}}</small><br>
-        <small>Categoria: {{categoria.nome}}</small><br>
-        <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success mt-3">Editar postagem</button></a>
-
-        <form action="/admin/postagens/deletar" method="POST">
-            <input type="hidden" name="id" value="{{_id}}">
-            <button type="
-            " class="btn btn-danger mt-2">Deletar postagem</button>
-        </form>
-
+<div class="container rounded bg-light">
+    <br class="mt-2">
+    <div class="container mt-4 d-flex justify-content-center">
+        <h2>Estabelecimentos cadastrados:</h2>
     </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm">
+            {{#each postagens}}
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <h4>{{titulo}}</h4>
+                        <p>Descrição{{descricao}}</p>
+                        <small>Data: {{data}}</small><br>
+                        <small>Categoria: {{categoria.nome}}</small><br>
+                        <div class="row float-right">
+                            <div class="col-sm"  style="padding: 0px; margin: 2px">
+                                <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success btn-sm">Editar</button></a>
+                            </div>
+                            <div class="col-sm"  style="padding: 0px; margin: 2px">
+                                <form action="/admin/postagens/deletar" method="POST">
+                                    <input type="hidden" name="id" value="{{_id}}">
+                                    <button class="btn btn-danger btn-sm">Deletar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                <p>Nenhum registro. ):</p>
+            {{/each}}
+        </div>
+    </div>
+    <br class="mt-4">
 </div>
-{{else}}
-<p>Nenhuma postagem registrada!</p>
-{{/each}}
+<br class="mt-4">
+
+
+

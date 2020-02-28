@@ -1,29 +1,40 @@
 {{#each erros}}
-<div class="alert alert-danger">{{texto}}</div>
-{{/each}}
-<div class="card">
-    <div class="card-body">
-        <h4>Nova postagem: </h4>
-        <form action="/admin/postagens/nova" method="POST">
-            <label for="titulo">Titulo: </label>
-            <input type="text" name="titulo" class="form-control">
-            <label for="descricao">Slug: </label>
-            <input type="text" name="slug" class="form-control">
-            <label for="descricao">Descrição: </label>
-            <input type="text" name="descricao" class="form-control">
-            <label for="conteudo">Conteúdo: </label>
-            <textarea name="conteudo" class="form-control"></textarea>
-            <label for="categoria">Categoria: </label>
-            <select name="categoria" class="custom-select">
-                {{#each categorias}}
-                <option value="{{_id}}">{{nome}}</option>
-                {{else}}
-                <option value="0">Nenhuma categoria registrada</option>
-                {{/each}}
-            </select>
-            <button class="btn btn-success mt-4" type="submit">Criar postagem</button>
-
-        </form>
+    <div class="alert alert-danger">
+        {{texto}}
     </div>
+{{/each}}
 
+<div class="container bg-light rounded">
+    <br class="mt-2">
+    <div class="container mt-4 ">
+        <h2>Nova postagem:</h2>
+    </div>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <form action="/admin/postagens/nova" method="POST">
+                <label for="titulo">Titulo: </label>
+                <input type="text" name="titulo" class="form-control">
+                <label for="descricao">Slug: </label>
+                <input type="text" name="slug" class="form-control">
+                <label for="descricao">Descrição: </label>
+                <input type="text" name="descricao" class="form-control">
+                <label for="conteudo">Conteúdo: </label>
+                <textarea name="conteudo" class="form-control"></textarea>
+                <label for="categoria">Categoria: </label>
+                <select name="categoria" class="custom-select">
+                    {{#each categorias}}
+                        <option value="{{_id}}">{{nome}}</option>
+                    {{else}}
+                        <option value="0">Nenhuma categoria registrada</option>
+                    {{/each}}
+                </select>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-success mt-4" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br class="mt-4">
 </div>
