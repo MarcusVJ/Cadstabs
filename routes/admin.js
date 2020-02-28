@@ -11,6 +11,8 @@ const passport = require("passport")
     const Categoria = mongoose.model("categorias");
     require('../models/Postagem');
     const Postagem = mongoose.model("postagens");
+    require('../models/Estabelecimentos');
+    const Estabelecimento = mongoose.model("estabelecimentos");
     require("../models/Usuario");
     const Usuario = mongoose.model("usuarios");
 
@@ -41,7 +43,7 @@ const passport = require("passport")
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao listar as categorias");
-                res.redirect("/admin");
+                res.redirect("/usuario");
             });
         });
 
@@ -99,27 +101,27 @@ const passport = require("passport")
 
                 categoria.save().then(() => {
                     res.flash("success_msg", "Categoria editada com sucesso!");
-                    res.redirect("/admin/categorias");
+                    res.redirect("/usuario/categorias");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro interno ao salvar a edição da categoria");
-                    res.redirect("/admin/categorias");
+                    res.redirect("/usuario/categorias");
                 });
 
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao editar a categoria")
-                res.redirect("/admin/categorias")
+                res.redirect("/usuario/categorias")
             });
         });
 
         router.post("/categorias/deletar", eAdmin, (req, res) => {
             Categoria.remove({ _id: req.body.id }).then(() => {
                 req.flash("success_msg", "Categoria deletada com sucesso!")
-                res.redirect("/admin/categorias");
+                res.redirect("/usuario/categorias");
             }).catch((err) => {
                 req.flash("error_msg", "Houve um erro ao deletar a categoria")
-                res.redirect("/admin/categorias");
+                res.redirect("/usuario/categorias");
             });
         });
 
@@ -131,15 +133,15 @@ const passport = require("passport")
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao listar postagens!");
-                    res.redirect("/");
+                    res.redirect("/usuario");
                 });
             } else {
                 req.flash("error_msg", "Esta categoria não existe");
-                res.redirect("/");
+                res.redirect("/usuario");
             }
         }).catch((err) => {
             req.flash("error_msg", "houve um erro interno ao carregar a página desta categoria");
-            res.redirect("/");
+            res.redirect("/usuario");
         });
     });
 
@@ -147,34 +149,34 @@ const passport = require("passport")
     // Estabelecimentos
     //
 
-        router.get("/postagens", eAdmin, (req, res) => {
+        router.get("/estabelecimentos", eAdmin, (req, res) => {
             Postagem.find().populate("categoria").sort({ data: "desc" }).then((postagens) => {
-                res.render("admin/postagens", { postagens: postagens });
+                res.render("admin/estabelecimentos", { postagens: postagens });
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao listar as postagens");
-                res.redirect("/admin");
+                res.redirect("/usuario");
             });
         });
 
-        router.get("/postagens/add", eAdmin, (req, res) => {
+        router.get("/estabelecimentos/add", eAdmin, (req, res) => {
             Categoria.find().then((categorias) => {
-                res.render("admin/addpostagem", {categorias: categorias});
+                res.render("admin/estabelecimentos", {categorias: categorias});
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao carregar o formulário");
-                res.redirect("/admin");
+                res.redirect("/usuario");
             });
         });
 
-        router.post("/postagens/nova", eAdmin, (req, res) => {
+        router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
             var erros = [];
 
             if (req.body.categoria == "0") {
                 erros.push({ texto: "Categoria inválida, registre uma categoria" });
             }
             if (erros.length > 0) {
-                res.render("admin/addpostagem", { erros: erros });
+                res.render("admin/estabelecimentos", { erros: erros });
             } else {
                 const novaPostagem = {
                     titulo: req.body.titulo,
@@ -185,32 +187,32 @@ const passport = require("passport")
                 };
                 new Postagem(novaPostagem).save().then(() => {
                     req.flash("success_msg", "Postagem criada com sucesso!");
-                    res.redirect("/admin/postagens");
+                    res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro durante o salvamento da postagem");
-                    res.redirect("/admin/postagens");
+                    res.redirect("/usuario/estabelecimentos");
                 });
             }
         });
 
-        router.get("/postagens/edit/:id", eAdmin, (req, res) => {
+        router.get("/estabelecimentos/edit/:id", eAdmin, (req, res) => {
             Postagem.findOne({ _id: req.params.id }).then((postagem) => {
                 Categoria.find().then((categorias) => {
-                    res.render("admin/editpostagens", {categorias: categorias, postagem: postagem});
+                    res.render("usuario/editestabelecimentos", {categorias: categorias, postagem: postagem});
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao listar as categorias");
-                    res.redirect("/admin/postagens");
+                    res.redirect("/usuario/estabelecimentos");
                 })
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao carregar o formulário de edição");
-                res.redirect("/admin/postagens");
+                res.redirect("/usuario/estabelecimentos");
             });
         });
 
-        router.post("/postagem/edit", eAdmin, (req, res) => {
+        router.post("/estabelecimentos/edit", eAdmin, (req, res) => {
             Postagem.findOne({ _id: req.body.id }).then((postagem) => {
                 postagem.titulo = req.body.titulo;
                 postagem.slug = req.body.slug;
@@ -220,27 +222,27 @@ const passport = require("passport")
 
                 postagem.save().then(() => {
                     req.flash("sucess_msg", "Postagem editada com sucesso!");
-                    res.redirect("/admin/postagens");
+                    res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Erro interno");
-                    res.redirect("/admin/postagens");
+                    res.redirect("/usuario/estabelecimentos");
                 });
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao salvar a edição");
-                res.redirect("/admin/postagens");
+                res.redirect("/usuario/estabelecimentos");
             });
         });
 
         router.post("/postagens/deletar/", eAdmin, (req, res) => {
             Postagem.remove({ _id: req.body.id }).then(() => {
                 req.flash("success_msg", "Postagem deletada com sucesso!");
-                res.redirect("/admin/postagens");
+                res.redirect("/usuario/estabelecimentos");
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao deletar a postagem");
-                res.redirect("/admin/postagens");
+                res.redirect("/usuario/estabelecimentos");
             });
         });
 
@@ -251,7 +253,7 @@ const passport = require("passport")
 
     router.post("/login", (req, res, next) => {
         passport.authenticate("local", {
-            successRedirect: "/admin",
+            successRedirect: "/usuario",
             failureRedirect: "/",
             failureFlash: true
         })(req, res, next);

@@ -8,8 +8,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const flash = require('connect-flash');
-
-const usuarios = require("./routes/usuario");
+//const usuarios = require("./routes/usuario");
 const passport = require("passport");
 require("./config/auth")(passport);
 const db = require("./config/db");
@@ -80,12 +79,12 @@ const db = require("./config/db");
 // Rotas
 //
 
-    app.use('/admin', admin);
-    app.use('/usuarios', usuarios);
+    app.use('/usuario', admin);
+    //app.use('/usuarios', usuarios);
 
     app.get('/', (req, res) => {
         if(req.user != null){
-            res.redirect("/admin");
+            res.redirect("/usuario");
         }else{
             res.render("index");
         }

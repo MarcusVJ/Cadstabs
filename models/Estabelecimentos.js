@@ -44,8 +44,9 @@ const Estabelecimento = new Schema({
         required: true
     },
     status: {
-        type: true,
-        required: true
+        type: Boolean,
+        required: true,
+        default: true
     },
     agência: {
         type: Number,
