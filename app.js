@@ -13,6 +13,8 @@ const passport = require("passport");
 require("./config/auth")(passport);
 const db = require("./config/db");
 
+
+
 //
 // Models
 //
@@ -75,6 +77,7 @@ const db = require("./config/db");
     app.use(express.static(path.join(__dirname, "public")));
     app.use(express.static('views/images'));
 
+
 //
 // Rotas
 //
@@ -93,6 +96,7 @@ const db = require("./config/db");
     app.get("/404", (req, res) => {
         res.send('Erro 404!');
     });
+
 
 //
 // Outros

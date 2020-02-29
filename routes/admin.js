@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport")
 
+router.use(express.static('views/images'));
+
 //
 // Models
 //
@@ -100,7 +102,7 @@ const passport = require("passport")
                 categoria.slug = req.body.slug;
 
                 categoria.save().then(() => {
-                    res.flash("success_msg", "Categoria editada com sucesso!");
+                    req.flash("success_msg", "Categoria editada com sucesso!");
                     res.redirect("/usuario/categorias");
                 }).catch((err) => {
                     console.log(err);
@@ -161,7 +163,7 @@ const passport = require("passport")
 
         router.get("/estabelecimentos/add", eAdmin, (req, res) => {
             Categoria.find().then((categorias) => {
-                res.render("admin/estabelecimentos", {categorias: categorias});
+                res.render("admin/addestabelecimentos", {categorias: categorias});
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao carregar o formulário");
@@ -199,7 +201,7 @@ const passport = require("passport")
         router.get("/estabelecimentos/edit/:id", eAdmin, (req, res) => {
             Postagem.findOne({ _id: req.params.id }).then((postagem) => {
                 Categoria.find().then((categorias) => {
-                    res.render("usuario/editestabelecimentos", {categorias: categorias, postagem: postagem});
+                    res.render("admin/editestabelecimentos", {categorias: categorias, postagem: postagem});
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao listar as categorias");
@@ -235,7 +237,7 @@ const passport = require("passport")
             });
         });
 
-        router.post("/postagens/deletar/", eAdmin, (req, res) => {
+        router.post("/estabelecimentos/deletar/", eAdmin, (req, res) => {
             Postagem.remove({ _id: req.body.id }).then(() => {
                 req.flash("success_msg", "Postagem deletada com sucesso!");
                 res.redirect("/usuario/estabelecimentos");

@@ -15,10 +15,10 @@
                         <small>Categoria: {{categoria.nome}}</small><br>
                         <div class="row float-right">
                             <div class="col-sm"  style="padding: 0px; margin: 2px">
-                                <a href="/admin/postagens/edit/{{_id}}"><button class="btn btn-success btn-sm">Editar</button></a>
+                                <a href="/usuario/estabelecimentos/edit/{{_id}}"><button class="btn btn-success btn-sm">Editar</button></a>
                             </div>
                             <div class="col-sm"  style="padding: 0px; margin: 2px">
-                                <form action="/admin/postagens/deletar" method="POST">
+                                <form action="/usuario/estabelecimentos/deletar" method="POST">
                                     <input type="hidden" name="id" value="{{_id}}">
                                     <button class="btn btn-danger btn-sm">Deletar</button>
                                 </form>

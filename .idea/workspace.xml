@@ -2,17 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab969b2b-3e36-4f37-9504-c7ada94dc6e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/images/favicon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Estabelecimentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Estabelecimentos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Postagem.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Postagem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/addpostagem.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/categorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/categorias/postagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias/postagens.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/editpostagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/index.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/postagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/editcategorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editcategorias.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/main.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/_navibar.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/_navibar.handlebars" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,15 +60,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\marcu\Desktop\Cadstabs\views\admin" />
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\public" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\images" />
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\views\admin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\public" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\images" />
     </key>
   </component>
@@ -77,7 +84,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1582898738642</updated>
-      <workItem from="1582898750263" duration="27385000" />
+      <workItem from="1582898750263" duration="35629000" />
     </task>
     <servers />
   </component>
@@ -85,6 +92,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="530" y="196" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582945591873">
+      <screen x="0" y="0" width="1600" height="900" />
+    </state>
+    <state x="530" y="196" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.900@0.0.1600.900" timestamp="1582945591873" />
     <state width="1556" height="236" key="GridCell.Tab.0.bottom" timestamp="1582899398597">
       <screen x="0" y="0" width="1600" height="900" />
     </state>
