@@ -15,8 +15,8 @@ router.use(express.static('views/images'));
     const Postagem = mongoose.model("postagens");
     require('../models/Estabelecimentos');
     const Estabelecimento = mongoose.model("estabelecimentos");
-    require("../models/Usuario");
-    const Usuario = mongoose.model("usuarios");
+//    require("../models/Usuario");
+//    const Usuario = mongoose.model("usuarios");
 
 //
 // Helpers
@@ -160,7 +160,7 @@ router.use(express.static('views/images'));
                 res.redirect("/usuario");
             });
         });
-
+        /*
         router.get("/estabelecimentos/add", eAdmin, (req, res) => {
             Categoria.find().then((categorias) => {
                 res.render("admin/addestabelecimentos", {categorias: categorias});
@@ -170,7 +170,17 @@ router.use(express.static('views/images'));
                 res.redirect("/usuario");
             });
         });
-
+        */
+        router.get("/estabelecimentos/add", eAdmin, (req, res) => {
+            Categoria.find().then((categorias) => {
+                res.render("admin/addestabelecimentos", {categorias: categorias});
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro ao carregar o formulário");
+                res.redirect("/usuario");
+            });
+        });
+        /*
         router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
             var erros = [];
 
@@ -188,6 +198,48 @@ router.use(express.static('views/images'));
                     slug: req.body.slug
                 };
                 new Postagem(novaPostagem).save().then(() => {
+                    req.flash("success_msg", "Postagem criada com sucesso!");
+                    res.redirect("/usuario/estabelecimentos");
+                }).catch((err) => {
+                    console.log(err);
+                    req.flash("error_msg", "Houve um erro durante o salvamento da postagem");
+                    res.redirect("/usuario/estabelecimentos");
+                });
+            }
+        });
+        */
+        router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
+            var erros = [];
+
+            if (req.body.categoria == "0") {
+                erros.push({ texto: "Categoria inválida, registre uma categoria" });
+            }
+            if (erros.length > 0) {
+                res.render("admin/estabelecimentos", { erros: erros });
+            } else {
+                const novoEstabelecimento = {
+                    titulo: req.body.titulo,
+                    descricao: req.body.descricao,
+                    conteudo: req.body.conteudo,
+                    categoria: req.body.categoria,
+                    slug: req.body.slug
+/*
+                    razaoSocial: ,
+                    nomeFantasia: ,
+                    cnpj: ,
+                    email: ,
+                    endereco: ,
+                    cidade: ,
+                    estado: ,
+                    telefone: ,
+                    categoria: ,
+                    status: ,
+                    agencia: ,
+                    conta:
+
+ */
+                };
+                new Estabelecimento(novoEstabelecimento).save().then(() => {
                     req.flash("success_msg", "Postagem criada com sucesso!");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
