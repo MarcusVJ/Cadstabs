@@ -22,6 +22,8 @@ router.use(express.static('views/images'));
 // Helpers
 //
     const { eAdmin } = require("../helpers/eAdmin");
+    const { validarCNPJ } = require("../helpers/validarCNPJ");
+
 
 //
 //Rotas
@@ -174,11 +176,18 @@ router.use(express.static('views/images'));
         router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
             var erros = [];
 
-            if(req.body.cnpj.length > 14 || req.body.cnpj.length < 14){
-                erros.push({ texto: "Campo CNPJ com quantidade de dígitos errado (Máximo 14)"});
+            if (!req.body.razaoSocial || typeof req.body.razaoSocial == undefined || req.body.razaoSocial == null) {
+                erros.push({ Message: "Nome inválido." });
             }
-
-
+            if (!req.body.nomeFantasia || typeof req.body.nomeFantasia == undefined || req.body.nomeFantasia == null) {
+                erros.push({ Message: "Email inválido." });
+            }
+            if(!req.body.cnpj || typeof req.body.cnpj == undefined || req.body.cnpj == null){
+                erros.push({ texto: "Campo CNPJ em branco, tente novamente."});
+            }
+            if(validarCNPJ(req.body.cnpj) != true){
+                erros.push({ texto: "Campo CNPJ com quantidade de dígitos errado (Máximo 14 caractéres)."});
+            }
             if (req.body.categoria == "0") {
                 erros.push({ texto: "Categoria inválida, registre uma categoria" });
             }

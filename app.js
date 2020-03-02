@@ -8,7 +8,6 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const flash = require('connect-flash');
-//const usuarios = require("./routes/usuario");
 const passport = require("passport");
 require("./config/auth")(passport);
 const db = require("./config/db");
@@ -16,11 +15,6 @@ const db = require("./config/db");
 //
 // Models
 //
-
-    require("./models/Postagem");
-    const Postagem = mongoose.model("postagens");
-    require("./models/Categoria");
-    const Categoria = mongoose.model("categorias");
 
 //
 // Configurações
