@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/models/Estabelecimentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Estabelecimentos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +73,8 @@
       <option name="presentableId" value="Default" />
       <updated>1582898738642</updated>
       <workItem from="1582898750263" duration="35747000" />
-      <workItem from="1583030340968" duration="3123000" />
+      <workItem from="1583030340968" duration="3325000" />
+      <workItem from="1583103516608" duration="10278000" />
     </task>
     <servers />
   </component>

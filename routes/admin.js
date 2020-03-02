@@ -152,62 +152,25 @@ router.use(express.static('views/images'));
     //
 
         router.get("/estabelecimentos", eAdmin, (req, res) => {
-            Postagem.find().populate("categoria").sort({ data: "desc" }).then((postagens) => {
-                res.render("admin/estabelecimentos", { postagens: postagens });
+            Estabelecimento.find().populate("categoria").sort({ data: "desc" }).then((estabelecimento) => {
+                res.render("admin/estabelecimentos", { estabelecimento: estabelecimento });
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Houve um erro ao listar as postagens");
                 res.redirect("/usuario");
             });
         });
-        /*
-        router.get("/estabelecimentos/add", eAdmin, (req, res) => {
-            Categoria.find().then((categorias) => {
-                res.render("admin/addestabelecimentos", {categorias: categorias});
-            }).catch((err) => {
-                console.log(err);
-                req.flash("error_msg", "Houve um erro ao carregar o formulário");
-                res.redirect("/usuario");
-            });
-        });
-        */
-        router.get("/estabelecimentos/add", eAdmin, (req, res) => {
-            Categoria.find().then((categorias) => {
-                res.render("admin/addestabelecimentos", {categorias: categorias});
-            }).catch((err) => {
-                console.log(err);
-                req.flash("error_msg", "Houve um erro ao carregar o formulário");
-                res.redirect("/usuario");
-            });
-        });
-        /*
-        router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
-            var erros = [];
 
-            if (req.body.categoria == "0") {
-                erros.push({ texto: "Categoria inválida, registre uma categoria" });
-            }
-            if (erros.length > 0) {
-                res.render("admin/estabelecimentos", { erros: erros });
-            } else {
-                const novaPostagem = {
-                    titulo: req.body.titulo,
-                    descricao: req.body.descricao,
-                    conteudo: req.body.conteudo,
-                    categoria: req.body.categoria,
-                    slug: req.body.slug
-                };
-                new Postagem(novaPostagem).save().then(() => {
-                    req.flash("success_msg", "Postagem criada com sucesso!");
-                    res.redirect("/usuario/estabelecimentos");
-                }).catch((err) => {
-                    console.log(err);
-                    req.flash("error_msg", "Houve um erro durante o salvamento da postagem");
-                    res.redirect("/usuario/estabelecimentos");
-                });
-            }
+        router.get("/estabelecimentos/add", eAdmin, (req, res) => {
+            Categoria.find().then((categorias) => {
+                res.render("admin/addestabelecimentos", {categorias: categorias});
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro ao carregar o formulário.");
+                res.redirect("/usuario");
+            });
         });
-        */
+
         router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
             var erros = [];
 
@@ -218,42 +181,33 @@ router.use(express.static('views/images'));
                 res.render("admin/estabelecimentos", { erros: erros });
             } else {
                 const novoEstabelecimento = {
-                    titulo: req.body.titulo,
-                    descricao: req.body.descricao,
-                    conteudo: req.body.conteudo,
+                    razaoSocial: req.body.razaoSocial,
+                    nomeFantasia: req.body.nomeFantasia,
+                    cnpj: req.body.cnpj,
+                    email: req.body.email,
+                    endereco: req.body.endereco,
+                    cidade: req.body.cidade,
+                    estado: req.body.estado,
+                    telefone: req.body.telefone,
                     categoria: req.body.categoria,
-                    slug: req.body.slug
-/*
-                    razaoSocial: ,
-                    nomeFantasia: ,
-                    cnpj: ,
-                    email: ,
-                    endereco: ,
-                    cidade: ,
-                    estado: ,
-                    telefone: ,
-                    categoria: ,
-                    status: ,
-                    agencia: ,
-                    conta:
-
- */
+                    agencia: req.body.agencia,
+                    conta: req.body.conta
                 };
                 new Estabelecimento(novoEstabelecimento).save().then(() => {
-                    req.flash("success_msg", "Postagem criada com sucesso!");
+                    req.flash("success_msg", "Estabelecimento criado com sucesso!");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro durante o salvamento da postagem");
+                    req.flash("error_msg", "Houve um erro durante o salvamento da estabelecimento");
                     res.redirect("/usuario/estabelecimentos");
                 });
             }
         });
 
         router.get("/estabelecimentos/edit/:id", eAdmin, (req, res) => {
-            Postagem.findOne({ _id: req.params.id }).then((postagem) => {
+            Estabelecimento.findOne({ _id: req.params.id }).then((estabelecimento) => {
                 Categoria.find().then((categorias) => {
-                    res.render("admin/editestabelecimentos", {categorias: categorias, postagem: postagem});
+                    res.render("admin/editestabelecimentos", {categorias: categorias, estabelecimento: estabelecimento});
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao listar as categorias");
@@ -266,8 +220,46 @@ router.use(express.static('views/images'));
             });
         });
 
+        router.post("/estabelecimentos/ativarstatus", eAdmin, (req, res) => {
+            Estabelecimento.findOne({ _id: req.body.id }).then((estabelecimento) => {
+                estabelecimento.status = true;
+
+                estabelecimento.save().then(() => {
+                    req.flash("sucess_msg", "Estabelecimento ativado com sucesso!");
+                    res.redirect("/usuario/estabelecimentos");
+                }).catch((err) => {
+                    console.log(err);
+                    req.flash("error_msg", "Erro interno.");
+                    res.redirect("/usuario/estabelecimentos");
+                });
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro ao salvar a edição.");
+                res.redirect("/usuario/estabelecimentos");
+            });
+        });
+
+        router.post("/estabelecimentos/inativarstatus", eAdmin, (req, res) => {
+            Estabelecimento.findOne({ _id: req.body.id }).then((estabelecimento) => {
+                estabelecimento.status = false;
+
+                estabelecimento.save().then(() => {
+                    req.flash("sucess_msg", "Estabelecimento ativado com sucesso!");
+                    res.redirect("/usuario/estabelecimentos");
+                }).catch((err) => {
+                    console.log(err);
+                    req.flash("error_msg", "Erro interno.");
+                    res.redirect("/usuario/estabelecimentos");
+                });
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro ao salvar a edição.");
+                res.redirect("/usuario/estabelecimentos");
+            });
+        });
+
         router.post("/estabelecimentos/edit", eAdmin, (req, res) => {
-            Postagem.findOne({ _id: req.body.id }).then((postagem) => {
+            Estabelecimento.findOne({ _id: req.body.id }).then((Estabelecimento) => {
                 postagem.titulo = req.body.titulo;
                 postagem.slug = req.body.slug;
                 postagem.descricao = req.body.descricao;
@@ -275,7 +267,7 @@ router.use(express.static('views/images'));
                 postagem.categoria = req.body.categoria;
 
                 postagem.save().then(() => {
-                    req.flash("sucess_msg", "Postagem editada com sucesso!");
+                    req.flash("sucess_msg", "Estabelecimento editado com sucesso!");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
@@ -291,11 +283,11 @@ router.use(express.static('views/images'));
 
         router.post("/estabelecimentos/deletar/", eAdmin, (req, res) => {
             Postagem.remove({ _id: req.body.id }).then(() => {
-                req.flash("success_msg", "Postagem deletada com sucesso!");
+                req.flash("success_msg", "Estabelecimento deletada com sucesso!");
                 res.redirect("/usuario/estabelecimentos");
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao deletar a postagem");
+                req.flash("error_msg", "Houve um erro ao deletar o estabelecimento.");
                 res.redirect("/usuario/estabelecimentos");
             });
         });

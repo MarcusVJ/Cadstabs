@@ -25,26 +25,16 @@
     <hr>
     <div class="card">
         <div class="card-body">
-            <div class="float-right">
-                <div class="input-group mb-3 ">
-                    <div class="input-group-prepend">
-                        <label for="Status" style="padding-right: 10px">Status:</label>
-                        <div class="input-group-text">
-                            <input type="checkbox" name="status" aria-label="Checkbox for following text input">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br><br>
+
             <form action="/usuario/estabelecimentos/nova" method="POST">
                 <label for="razaoSocial">Razão Social: </label>
-                <input type="text" name="razaoSocial" class="form-control">
+                <input type="text" name="razaoSocial" class="form-control" autocomplete="off">
 
                 <label for="nomeFantasia">Nome Fantasia: </label>
-                <input type="text" name="nomeFantasia" class="form-control">
+                <input type="text" name="nomeFantasia" class="form-control" autocomplete="off">
 
                 <label for="cnpj">CNPJ: </label>
-                <input type="number" name="cnpj" class="form-control" data-mask="000.000.000/0000-00" data-mask-selectonfocus="true">
+                <input type="number" name="cnpj" class="form-control" placeholder="xx.xxx.xxx/xxxx-xx" autocomplete="off">
 
                 <label for="email">E-mail: </label>
                 <input type="text" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
@@ -59,7 +49,7 @@
                 <input type="text" name="estado" class="form-control">
 
                 <label for="telefone">Telefone: </label>
-                <input type="number" name="telefone" class="form-control" data-mask="(00) 0000-0000)" data-mask-selectonfocus="true">
+                <input type="number" name="telefone" class="form-control" placeholder="(xx) xxxx-xxxx" autocomplete="off" >
 
                 <label for="categoria">Categoria: </label>
                 <select name="categoria" class="custom-select">
@@ -69,17 +59,12 @@
                         <option value="0">Nenhuma categoria registrada</option>
                     {{/each}}
                 </select>
-                <label for="status">Status: </label>
-                <select name="status" class="custom-select">
-                        <option value="1">Ativo</option>
-                        <option value="0">Inativo</option>
-                </select>
 
                 <label for="agencia">Agência: </label>
-                <input type="number" name="agencia" class="form-control" data-mask="000-0" data-mask-selectonfocus="true">
+                <input type="number" name="agencia" class="form-control" data-mask="000-0" data-mask-selectonfocus="true" placeholder="Ex.: xxx-x" autocomplete="off">
 
                 <label for="conta">Conta: </label>
-                <input type="number" name="conta" class="form-control" data-mask="00.000-0" data-mask-selectonfocus="true">
+                <input type="number" name="conta" class="form-control" data-mask="00.000-0" data-mask-selectonfocus="true" placeholder="Ex.: xx.xxx-x" autocomplete="off">
 
                 <br>
                 <div class="d-flex justify-content-center">
@@ -90,3 +75,9 @@
     </div>
     <br class="mt-4">
 </div>
+
+<script>
+    $(function() {
+        $('#telefone').mask('(00) 0 0000-0000');
+    })
+</script>
