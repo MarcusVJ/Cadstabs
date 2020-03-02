@@ -2,12 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab969b2b-3e36-4f37-9504-c7ada94dc6e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/.ruby-version" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/Gruntfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/ISSUE_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/bower.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/component.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/deploy.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/dist/jquery.mask.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/package.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/src/jquery.mask.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/jquery.mask.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/qunit.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/qunit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/sinon-1.10.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/sinon-qunit-1.0.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/sinon-qunit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-1.11.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-1.7.2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-1.8.3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-1.9.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-2.1.1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-jquery-3.0.0.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/test-for-zepto.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/zepto/data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/zepto/event.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/jQuery-Mask-Plugin-master/test/zepto/zepto.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Estabelecimentos.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Estabelecimentos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addcategorias.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/usuarios/registro.handlebars" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +89,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -59,6 +99,7 @@
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\admin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\public\css" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\public" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\images" />
     </key>
@@ -76,7 +117,7 @@
       <workItem from="1582898750263" duration="35747000" />
       <workItem from="1583030340968" duration="3325000" />
       <workItem from="1583103516608" duration="10278000" />
-      <workItem from="1583149586278" duration="3107000" />
+      <workItem from="1583149586278" duration="10081000" />
     </task>
     <servers />
   </component>

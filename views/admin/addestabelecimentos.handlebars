@@ -49,7 +49,7 @@
                 <input type="text" name="estado" class="form-control">
 
                 <label for="telefone">Telefone: </label>
-                <input type="number" name="telefone" class="form-control" placeholder="(xx) xxxx-xxxx" autocomplete="off" >
+                <input type="number" name="telefone" id="telefone" class="form-control" autocomplete="off">
 
                 <label for="categoria">Categoria: </label>
                 <select name="categoria" id="categoria" class="custom-select" onselect="supermercado()">
@@ -77,13 +77,6 @@
 </div>
 
 <script>
-    //mascara para os campos necessários
-    $(function() {
-        $('#telefone').mask('(00) 0000-0000');
-        $('#agencia').mask('000-0');
-        $('#conta').mask('00.000-0');
-    });
-
     function supermercado() {
         categoria = document.getElementById('categoria');
         if(categoria.value == 'Supermercado' || categoria.value == 'supermercado'){

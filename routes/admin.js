@@ -174,6 +174,11 @@ router.use(express.static('views/images'));
         router.post("/estabelecimentos/nova", eAdmin, (req, res) => {
             var erros = [];
 
+            if(req.body.cnpj.length > 14 || req.body.cnpj.length < 14){
+                erros.push({ texto: "Campo CNPJ com quantidade de dígitos errado (Máximo 14)"});
+            }
+
+
             if (req.body.categoria == "0") {
                 erros.push({ texto: "Categoria inválida, registre uma categoria" });
             }
@@ -259,14 +264,20 @@ router.use(express.static('views/images'));
         });
 
         router.post("/estabelecimentos/edit", eAdmin, (req, res) => {
-            Estabelecimento.findOne({ _id: req.body.id }).then((Estabelecimento) => {
-                postagem.titulo = req.body.titulo;
-                postagem.slug = req.body.slug;
-                postagem.descricao = req.body.descricao;
-                postagem.conteudo = req.body.conteudo;
-                postagem.categoria = req.body.categoria;
+            Estabelecimento.findOne({ _id: req.body.id }).then((estabelecimento) => {
+                estabelecimento.razaoSocial = req.body.razaoSocial;
+                estabelecimento.nomeFantasia = req.body.nomeFantasia;
+                estabelecimento.cnpj = req.body.cnpj;
+                estabelecimento.email = req.body.email;
+                estabelecimento.endereco = req.body.endereco;
+                estabelecimento.cidade = req.body.cidade;
+                estabelecimento.estado = req.body.estado;
+                estabelecimento.telefone = req.body.telefone;
+                estabelecimento.categoria = req.body.categoria;
+                estabelecimento.agencia = req.body.agencia;
+                estabelecimento.conta = req.body.conta;
 
-                postagem.save().then(() => {
+                estabelecimento.save().then(() => {
                     req.flash("sucess_msg", "Estabelecimento editado com sucesso!");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {

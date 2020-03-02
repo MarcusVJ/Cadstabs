@@ -2,6 +2,21 @@
 <div class="alert alert-danger">{{texto}}</div>
 {{else}}
 {{/each}}
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance:textfield;
+    }
+</style>
+
 <div class="container bg-light rounded">
     <br class="mt-2">
     <div class="container mt-4 ">
@@ -10,25 +25,49 @@
     <hr>
     <div class="card">
         <div class="card-body">
-            <form action="/admin/postagem/edit" method="POST">
-                <input type="hidden" value="{{postagem._id}}" name="id">
+            <form action="/usuario/estabelecimentos/edit" method="POST">
+                <input type="hidden" value="{{estabelecimento._id}}" name="id">
 
-                <label for="titulo">Titulo: </label>
-                <input type="text" name="titulo" class="form-control" value="{{postagem.titulo}}" required>
-                <label for="descricao">Slug: </label>
-                <input type="text" name="slug" class="form-control" value="{{postagem.slug}}" required>
-                <label for="descricao">Descrição: </label>
-                <input type="text" name="descricao" class="form-control" value="{{postagem.descricao}}" required>
-                <label for="conteudo">Conteúdo: </label>
-                <textarea name="conteudo" class="form-control" required>{{postagem.conteudo}}</textarea>
+                <label for="razaoSocial">Razão Social: </label>
+                <input type="text" name="razaoSocial" class="form-control" autocomplete="off" value="{{estabelecimento.razaoSocial}}">
+
+                <label for="nomeFantasia">Nome Fantasia: </label>
+                <input type="text" name="nomeFantasia" class="form-control" autocomplete="off" value="{{estabelecimento.nomeFantasia}}">
+
+                <label for="cnpj">CNPJ: </label>
+                <input type="number" name="cnpj" class="form-control" placeholder="xx.xxx.xxx/xxxx-xx" autocomplete="off" value="{{estabelecimento.cnpj}}">
+
+                <label for="email">E-mail: </label>
+                <input type="text" name="email" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onkeyup="sync()" value="{{estabelecimento.email}}">
+
+                <label for="endereco">Endereço: </label>
+                <input type="text" name="endereco" class="form-control" value="{{estabelecimento.endereco}}">
+
+                <label for="cidade">Cidade: </label>
+                <input type="text" name="cidade" class="form-control" value="{{estabelecimento.cidade}}">
+
+                <label for="estado">Estado: </label>
+                <input type="text" name="estado" class="form-control" value="{{estabelecimento.estado}}">
+
+                <label for="telefone">Telefone: </label>
+                <input type="number" name="telefone" class="form-control" autocomplete="off" value="{{estabelecimento.telefone}}">
+
                 <label for="categoria">Categoria: </label>
-                <select name="categoria" class="custom-select">
+                <select name="categoria" id="categoria" class="custom-select" onselect="supermercado()">
                     {{#each categorias}}
                         <option value="{{_id}}">{{nome}}</option>
                     {{else}}
                         <option value="0">Nenhuma categoria registrada</option>
                     {{/each}}
                 </select>
+
+                <label for="agencia">Agência: </label>
+                <input type="number" name="agencia" id="agencia" class="form-control" data-mask="000-0" data-mask-selectonfocus="true" placeholder="Ex.: xxx-x" autocomplete="off" value="{{estabelecimento.agencia}}">
+                <small class="text-secondary">(Em caso da conta conter o valor "X" como dígito verificador, insira o valor 0.)</small><br>
+
+                <label for="conta">Conta: </label>
+                <input type="number" name="conta" id="conta" class="form-control" data-mask="00.000-0" data-mask-selectonfocus="true" placeholder="Ex.: xx.xxx-x" autocomplete="off" value="{{estabelecimento.conta}}">
+
                 <div class="d-flex justify-content-center">
                     <button class="btn btn-success mt-4">Editar</button>
                 </div>
@@ -37,3 +76,36 @@
     </div>
     <br class="mt-4">
 </div>
+
+<script>
+    function supermercado() {
+        categoria = document.getElementById('categoria');
+        if(categoria.value == 'Supermercado' || categoria.value == 'supermercado'){
+            agencia = document.getElementById('agencia');
+            conta = document.getElementById('conta');
+
+            agencia.attributes.required = "required";
+            conta.attributes.required = "required";
+        }
+    }
+
+    function sync()
+    {
+        n1 = document.getElementById('email');
+
+        n1.value = removeAcento(n1.value);
+    }
+
+    function removeAcento(text)
+    {
+        text = text.toLowerCase();
+        text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
+        text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
+        text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
+        text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
+        text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
+        text = text.replace(new RegExp('[Ç]','gi'), 'c');
+        text = text.replace(new RegExp(/\s/g), '');
+        return text;
+    }
+</script>
