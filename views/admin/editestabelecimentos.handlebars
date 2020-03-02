@@ -53,7 +53,7 @@
                 <input type="number" name="telefone" class="form-control" autocomplete="off" value="{{estabelecimento.telefone}}">
 
                 <label for="categoria">Categoria: </label>
-                <select name="categoria" id="categoria" class="custom-select" onselect="supermercado()">
+                <select name="categoria" id="categoria" class="custom-select">
                     {{#each categorias}}
                         <option value="{{_id}}">{{nome}}</option>
                     {{else}}
@@ -78,17 +78,6 @@
 </div>
 
 <script>
-    function supermercado() {
-        categoria = document.getElementById('categoria');
-        if(categoria.value == 'Supermercado' || categoria.value == 'supermercado'){
-            agencia = document.getElementById('agencia');
-            conta = document.getElementById('conta');
-
-            agencia.attributes.required = "required";
-            conta.attributes.required = "required";
-        }
-    }
-
     function sync()
     {
         n1 = document.getElementById('email');

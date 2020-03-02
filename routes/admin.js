@@ -3,20 +3,15 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport")
 
-router.use(express.static('views/images'));
-
 //
 // Models
 //
 
     require("../models/Categoria");
     const Categoria = mongoose.model("categorias");
-    require('../models/Postagem');
-    const Postagem = mongoose.model("postagens");
     require('../models/Estabelecimentos');
     const Estabelecimento = mongoose.model("estabelecimentos");
-//    require("../models/Usuario");
-//    const Usuario = mongoose.model("usuarios");
+
 
 //
 // Helpers
@@ -46,7 +41,7 @@ router.use(express.static('views/images'));
                 res.render("admin/categorias", {categorias: categorias});
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao listar as categorias");
+                req.flash("error_msg", "Houve um erro ao listar as categorias.");
                 res.redirect("/usuario");
             });
         });
@@ -75,12 +70,12 @@ router.use(express.static('views/images'));
                     slug: req.body.slug
                 };
                 new Categoria(novaCategoria).save().then(() => {
-                    req.flash("success_msg", "Categoria criada com sucesso!");
+                    req.flash("success_msg", "Categoria criada com sucesso.");
                     res.redirect("/usuario/categorias");
-                    console.log("Categoria salva com sucesso!");
+                    console.log("Categoria salva com sucesso.");
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente!");
+                    req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente.");
                     res.redirect("/usuario/categorias");
                 });
             }
@@ -91,7 +86,7 @@ router.use(express.static('views/images'));
                 res.render("admin/editcategorias", { categoria: categoria });
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Esta categoria não existe");
+                req.flash("error_msg", "Esta categoria não existe.");
                 res.redirect("/usuario/categorias");
             });
         });
@@ -104,27 +99,27 @@ router.use(express.static('views/images'));
                 categoria.slug = req.body.slug;
 
                 categoria.save().then(() => {
-                    req.flash("success_msg", "Categoria editada com sucesso!");
+                    req.flash("success_msg", "Categoria editada com sucesso.");
                     res.redirect("/usuario/categorias");
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro interno ao salvar a edição da categoria");
+                    req.flash("error_msg", "Houve um erro interno ao salvar a edição da categoria.");
                     res.redirect("/usuario/categorias");
                 });
 
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao editar a categoria")
+                req.flash("error_msg", "Houve um erro ao editar a categoria.")
                 res.redirect("/usuario/categorias")
             });
         });
 
         router.post("/categorias/deletar", eAdmin, (req, res) => {
             Categoria.remove({ _id: req.body.id }).then(() => {
-                req.flash("success_msg", "Categoria deletada com sucesso!")
+                req.flash("success_msg", "Categoria deletada com sucesso.")
                 res.redirect("/usuario/categorias");
             }).catch((err) => {
-                req.flash("error_msg", "Houve um erro ao deletar a categoria")
+                req.flash("error_msg", "Houve um erro ao deletar a categoria.")
                 res.redirect("/usuario/categorias");
             });
         });
@@ -132,19 +127,19 @@ router.use(express.static('views/images'));
     router.get("/categorias/:slug", eAdmin, (req, res) => {
         Categoria.findOne({ slug: req.params.slug }).then((categoria) => {
             if (categoria) {
-                Postagem.find({ categoria: categoria._id }).then((postagens) => {
-                    res.render("admin/categorias/postagens", {postagens: postagens, categoria: categoria});
+                Estabelecimento.find({ categoria: categoria._id }).then((estabelecimento) => {
+                    res.render("admin/categorias/estabelecimento", {estabelecimento: estabelecimento, categoria: categoria});
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro ao listar postagens!");
+                    req.flash("error_msg", "Houve um erro ao listar os estabelecimento.");
                     res.redirect("/usuario");
                 });
             } else {
-                req.flash("error_msg", "Esta categoria não existe");
+                req.flash("error_msg", "Esta categoria não existe.");
                 res.redirect("/usuario");
             }
         }).catch((err) => {
-            req.flash("error_msg", "houve um erro interno ao carregar a página desta categoria");
+            req.flash("error_msg", "houve um erro interno ao carregar a página desta categoria.");
             res.redirect("/usuario");
         });
     });
@@ -154,11 +149,11 @@ router.use(express.static('views/images'));
     //
 
         router.get("/estabelecimentos", eAdmin, (req, res) => {
-            Estabelecimento.find().populate("categoria").sort({ data: "desc" }).then((estabelecimento) => {
+            Estabelecimento.find().populate("categoria").sort({ razaoSocial: "asc" }).then((estabelecimento) => {
                 res.render("admin/estabelecimentos", { estabelecimento: estabelecimento });
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao listar as postagens");
+                req.flash("error_msg", "Houve um erro ao listar os estabelecimentos.");
                 res.redirect("/usuario");
             });
         });
@@ -177,22 +172,23 @@ router.use(express.static('views/images'));
             var erros = [];
 
             if (!req.body.razaoSocial || typeof req.body.razaoSocial == undefined || req.body.razaoSocial == null) {
-                erros.push({ Message: "Nome inválido." });
-            }
-            if (!req.body.nomeFantasia || typeof req.body.nomeFantasia == undefined || req.body.nomeFantasia == null) {
-                erros.push({ Message: "Email inválido." });
+                erros.push({ texto: "Campo Razao Social inválido." });
             }
             if(!req.body.cnpj || typeof req.body.cnpj == undefined || req.body.cnpj == null){
                 erros.push({ texto: "Campo CNPJ em branco, tente novamente."});
             }
-            if(validarCNPJ(req.body.cnpj) != true){
+            if(!validarCNPJ(req.body.cnpj)){
                 erros.push({ texto: "Campo CNPJ com quantidade de dígitos errado (Máximo 14 caractéres)."});
             }
-            if (req.body.categoria == "0") {
-                erros.push({ texto: "Categoria inválida, registre uma categoria" });
+            if((req.body.categoria == 'Supermercado' || req.body.categoria == 'supermercado') && (!req.body.agencia || typeof req.body.agencia == undefined || req.body.agencia == null)){
+                erros.push({ texto: "O campo Agência deve estar preenchido."});
             }
+            if((req.body.categoria == 'Supermercado' || req.body.categoria == 'supermercado') && (!req.body.conta || typeof req.body.conta == undefined || req.body.conta == null)){
+                erros.push({ texto: "O campo Conta deve estar preenchido."});
+            }
+
             if (erros.length > 0) {
-                res.render("admin/estabelecimentos", { erros: erros });
+                res.render("admin/addestabelecimentos", { erros: erros });
             } else {
                 const novoEstabelecimento = {
                     razaoSocial: req.body.razaoSocial,
@@ -208,11 +204,11 @@ router.use(express.static('views/images'));
                     conta: req.body.conta
                 };
                 new Estabelecimento(novoEstabelecimento).save().then(() => {
-                    req.flash("success_msg", "Estabelecimento criado com sucesso!");
+                    req.flash("success_msg", "Estabelecimento criado com sucesso.");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro durante o salvamento da estabelecimento");
+                    req.flash("error_msg", "Houve um erro durante o salvamento da estabelecimento.");
                     res.redirect("/usuario/estabelecimentos");
                 });
             }
@@ -221,15 +217,15 @@ router.use(express.static('views/images'));
         router.get("/estabelecimentos/edit/:id", eAdmin, (req, res) => {
             Estabelecimento.findOne({ _id: req.params.id }).then((estabelecimento) => {
                 Categoria.find().then((categorias) => {
-                    res.render("admin/editestabelecimentos", {categorias: categorias, estabelecimento: estabelecimento});
+                    res.render("admin/editestabelecimentos.", {categorias: categorias, estabelecimento: estabelecimento});
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Houve um erro ao listar as categorias");
+                    req.flash("error_msg", "Houve um erro ao listar as categorias.");
                     res.redirect("/usuario/estabelecimentos");
                 })
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao carregar o formulário de edição");
+                req.flash("error_msg", "Houve um erro ao carregar o formulário de edição.");
                 res.redirect("/usuario/estabelecimentos");
             });
         });
@@ -240,7 +236,7 @@ router.use(express.static('views/images'));
 
                 estabelecimento.save().then(() => {
                     req.flash("sucess_msg", "Estabelecimento ativado com sucesso!");
-                    res.redirect("/usuario/estabelecimentos");
+                    res.redirect("/usuario/estabelecimentos.");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Erro interno.");
@@ -258,7 +254,7 @@ router.use(express.static('views/images'));
                 estabelecimento.status = false;
 
                 estabelecimento.save().then(() => {
-                    req.flash("sucess_msg", "Estabelecimento ativado com sucesso!");
+                    req.flash("sucess_msg", "Estabelecimento ativado com sucesso.");
                     res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
@@ -287,23 +283,23 @@ router.use(express.static('views/images'));
                 estabelecimento.conta = req.body.conta;
 
                 estabelecimento.save().then(() => {
-                    req.flash("sucess_msg", "Estabelecimento editado com sucesso!");
-                    res.redirect("/usuario/estabelecimentos");
+                    req.flash("sucess_msg", "Estabelecimento editado com sucesso.");
+                    res.redirect("/usuario");
                 }).catch((err) => {
                     console.log(err);
-                    req.flash("error_msg", "Erro interno");
-                    res.redirect("/usuario/estabelecimentos");
+                    req.flash("error_msg", "Erro interno.");
+                    res.redirect("/usuario");
                 });
             }).catch((err) => {
                 console.log(err);
-                req.flash("error_msg", "Houve um erro ao salvar a edição");
-                res.redirect("/usuario/estabelecimentos");
+                req.flash("error_msg", "Houve um erro ao salvar a edição.");
+                res.redirect("/usuario");
             });
         });
 
         router.post("/estabelecimentos/deletar/", eAdmin, (req, res) => {
-            Postagem.remove({ _id: req.body.id }).then(() => {
-                req.flash("success_msg", "Estabelecimento deletada com sucesso!");
+            Estabelecimento.remove({ _id: req.body.id }).then(() => {
+                req.flash("success_msg", "Estabelecimento deletado com sucesso.");
                 res.redirect("/usuario/estabelecimentos");
             }).catch((err) => {
                 console.log(err);
@@ -327,7 +323,7 @@ router.use(express.static('views/images'));
 
     router.get("/logout", (req, res) => {
         req.logout();
-        req.flash('success_msg', "Deslogado com sucesso!");
+        req.flash('success_msg', "Deslogado com sucesso.");
         res.redirect("/")
     });
 

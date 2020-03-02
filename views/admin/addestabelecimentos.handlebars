@@ -1,6 +1,7 @@
 {{#each erros}}
     <div class="alert alert-danger">{{texto}}</div>
 {{else}}
+
 {{/each}}
 
 <style>
@@ -25,7 +26,6 @@
     <hr>
     <div class="card">
         <div class="card-body">
-
             <form action="/usuario/estabelecimentos/nova" method="POST">
                 <label for="razaoSocial">Razão Social: </label>
                 <input type="text" name="razaoSocial" class="form-control" autocomplete="off">
@@ -40,19 +40,19 @@
                 <input type="text" name="email" id="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onkeyup="sync()">
 
                 <label for="endereco">Endereço: </label>
-                <input type="text" name="endereco" class="form-control">
+                <input type="text" name="endereco" class="form-control" autocomplete="off">
 
                 <label for="cidade">Cidade: </label>
-                <input type="text" name="cidade" class="form-control">
+                <input type="text" name="cidade" class="form-control" autocomplete="off">
 
                 <label for="estado">Estado: </label>
-                <input type="text" name="estado" class="form-control">
+                <input type="text" name="estado" class="form-control" autocomplete="off">
 
                 <label for="telefone">Telefone: </label>
                 <input type="number" name="telefone" class="form-control" autocomplete="off">
 
                 <label for="categoria">Categoria: </label>
-                <select name="categoria" id="categoria" class="custom-select" onselect="supermercado()">
+                <select name="categoria" id="categoria" class="custom-select">
                     {{#each categorias}}
                         <option value="{{_id}}">{{nome}}</option>
                     {{else}}
@@ -77,17 +77,6 @@
 </div>
 
 <script>
-    function supermercado() {
-        categoria = document.getElementById('categoria');
-        if(categoria.value == 'Supermercado' || categoria.value == 'supermercado'){
-            agencia = document.getElementById('agencia');
-            conta = document.getElementById('conta');
-
-            agencia.attributes.required = "required";
-            conta.attributes.required = "required";
-        }
-    }
-
     function sync()
     {
         n1 = document.getElementById('email');

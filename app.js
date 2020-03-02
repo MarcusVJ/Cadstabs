@@ -23,7 +23,7 @@ const db = require("./config/db");
     // Sessão
     //
     app.use(session({
-        secret: "cursodenode",
+        secret: "cadstabs",
         resave: true,
         saveUninitialized: true
     }));
@@ -39,7 +39,7 @@ const db = require("./config/db");
         res.locals.error_msg = req.flash("error_msg");
         res.locals.error = req.flash("error");
         res.locals.user = req.user || null;
-        next()
+        next();
     });
 
     //
@@ -59,11 +59,12 @@ const db = require("./config/db");
     //
     // Moongoose
     //
+    mongoose.Promise = global.Promise;
     mongoose.connect(db.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
         console.log("**** Status -> Conexão MongoDB: [Online]");
     }).catch((err) => {
         console.log("**** Status -> Conexão MongoDB: [Offline] " + err);
-    })
+    });
 
     // Public e Images
     app.use(express.static(path.join(__dirname, "public")));
@@ -73,9 +74,7 @@ const db = require("./config/db");
 //
 // Rotas
 //
-
     app.use('/usuario', admin);
-    //app.use('/usuarios', usuarios);
 
     app.get('/', (req, res) => {
         if(req.user != null){

@@ -8,9 +8,9 @@ const db = require("./config/db");
 //
 
     mongoose.connect(db.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
-        main();
+        console.log("**** Status -> Conexão MongoDB: [Online]");
     }).catch((err) => {
-        console.log("Erro de conexão com MongoDB: " + err);
+        console.log("**** Status -> Conexão MongoDB: [Offline] " + err);
         process.exit(22);
     });
 
@@ -92,8 +92,10 @@ const db = require("./config/db");
         await questionSenha2();
         console.log("\n\nValores registrados\nNome: " + nome + "\nE-mail: " + email + "\nSenha1: " + senha1 + "\nSenha2: " + senha2)
         verificaCampos();
+        console.log("1")
 
         cadastrarUsuario();
+        console.log("2")
 
         rl.close();
         process.exit(22)
@@ -162,10 +164,6 @@ const db = require("./config/db");
         });
     }
 
-
-
-
-
-
+main();
 
 
