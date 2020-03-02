@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const passport = require("passport")
+const passport = require("passport");
+bcrypt = require('bcryptjs');
 
 //
 // Models
 //
 
+    require("../models/Usuario");
+    const Usuario = mongoose.model("usuarios");
     require("../models/Categoria");
     const Categoria = mongoose.model("categorias");
     require('../models/Estabelecimentos');
@@ -157,6 +160,15 @@ const passport = require("passport")
                 res.redirect("/usuario");
             });
         });
+        router.get("/estabelecimentosinativos", eAdmin, (req, res) => {
+            Estabelecimento.find().populate("categoria").sort({ razaoSocial: "asc" }).then((estabelecimento) => {
+                res.render("admin/estabelecimentos", { estabelecimento: estabelecimento });
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro ao listar os estabelecimentos.");
+                res.redirect("/usuario");
+            });
+        });
 
         router.get("/estabelecimentos/add", eAdmin, (req, res) => {
             Categoria.find().then((categorias) => {
@@ -215,9 +227,9 @@ const passport = require("passport")
         });
 
         router.get("/estabelecimentos/edit/:id", eAdmin, (req, res) => {
-            Estabelecimento.findOne({ _id: req.params.id }).then((estabelecimento) => {
+            Estabelecimento.findOne({_id: req.params.id}).then((estabelecimento) => {
                 Categoria.find().then((categorias) => {
-                    res.render("admin/editestabelecimentos.", {categorias: categorias, estabelecimento: estabelecimento});
+                    res.render("admin/editestabelecimentos", {categorias: categorias, estabelecimento: estabelecimento});
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao listar as categorias.");
@@ -236,7 +248,7 @@ const passport = require("passport")
 
                 estabelecimento.save().then(() => {
                     req.flash("sucess_msg", "Estabelecimento ativado com sucesso!");
-                    res.redirect("/usuario/estabelecimentos.");
+                    res.redirect("/usuario/estabelecimentos");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Erro interno.");
@@ -310,7 +322,7 @@ const passport = require("passport")
 
 
     //
-    // Login
+    // Login e Registro
     //
 
     router.post("/login", (req, res, next) => {
@@ -326,5 +338,73 @@ const passport = require("passport")
         req.flash('success_msg', "Deslogado com sucesso.");
         res.redirect("/")
     });
+
+    router.get('/registro', eAdmin,(req,res) => {
+        res.render('admin/registro')
+    })
+
+    router.post('/novoregistro', eAdmin, (req,res) => {
+        var erros = []
+
+        if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null){
+            erros.push({texto: "Nome inválido"})
+        }
+        if(!req.body.email || typeof req.body.email == undefined || req.body.email == null){
+            erros.push({texto: "E-mail inválido"})
+        }
+        if(!req.body.senha || typeof req.body.senha == undefined || req.body.senha == null){
+            erros.push({texto: "Senha inválida"})
+        }
+        if(req.body.senha.length < 4){
+            erros.push({texto: "Senha muito curta"})
+        }
+        if(req.body.senha != req.body.senha2){
+            erros.push({texto: "As senhas não correspondem. Tente novamente."})
+        }
+
+        if(erros.length > 0){
+            res.render('usuarios/registro', {erros: erros} )
+        }else{
+            // verificando se ja existe o usuario cadastrado no banco
+            Usuario.findOne({email: req.body.email}).then((usuario) => {
+                if(usuario){
+                    req.flash("error_msg", "Já existe uma conta com este e-mail no nosso sistema")
+                    res.redirect('/usuario/registro');
+                }else{
+                    // gravando dados no banco
+                    const novoUsuario = new Usuario({
+                        nome: req.body.nome,
+                        email: req.body.email,
+                        senha: req.body.senha
+                    })
+
+                    // criando hash para criptografar senha, salt valor aleatorio misturado no hash gerado
+                    bcrypt.genSalt(10, (erro, salt) => {
+                        bcrypt.hash(novoUsuario.senha, salt, (erro, hash) => {
+                            if(erro){
+                                console.log(erro)
+                                req.flash("error-msg", "Houve um erro ao salvar dados do usuário.")
+                                res.redirect('/')
+                            }
+
+                            novoUsuario.senha = hash
+                            novoUsuario.save().then(() => {
+                                req.flash("success_msg", "Usuário criado com sucesso.");
+                                res.redirect('/')
+                            }).catch((err) => {
+                                req.flash("error_msg", "Houve um erro ao salvar dados do usuário, tente novamente.");
+                                res.redirect('/usuario/registro');
+                            })
+                        })
+                    })
+                }
+            }).catch((err) => {
+                console.log(err);
+                req.flash("error_msg", "Houve um erro interno.");
+                res.redirect('/');
+            });
+        }
+    });
+
 
 module.exports = router;

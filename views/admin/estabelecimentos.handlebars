@@ -3,14 +3,17 @@
     <div class="container mt-4 d-flex justify-content-center">
         <h2>Estabelecimentos cadastrados:</h2>
     </div>
+    <div class="row d-flex justify-content-center">
+        <small class="rounded bg-warning">   (Legenda: <b class="text-light">Ativo</b> / <b class="text-secondary">Inativo</b>)   </small>
+    </div>
     <hr>
         <div class="row">
             <div class="col-sm">
                 {{#each estabelecimento}}
                     {{#if status}}
-                    <div class="card mt-2">
+                        <div class="card mt-2">
                     {{else}}
-                    <div class="card mt-2 bg-dark text-light">
+                        <div class="card mt-2 bg-secondary">
                     {{/if}}
                         <div class="card-body">
                             <h4>{{razaoSocial}}</h4>
@@ -61,6 +64,5 @@
             </div>
         </div>
         <br class="mt-4">
-    </div>
     <br class="mt-4">
 </div>

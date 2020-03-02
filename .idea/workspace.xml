@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab969b2b-3e36-4f37-9504-c7ada94dc6e4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/admin/registro.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CadastroNovosUsuarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/CadastroNovosUsuarios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers/eAdmin.js" beforeDir="false" afterPath="$PROJECT_DIR$/helpers/eAdmin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Categoria.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/Categoria.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Postagem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CadastroNovosUsuarios.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/usuario.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/addestabelecimentos.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/categorias/postagens.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias/estabelecimento.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/editestabelecimentos.handlebars" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/categorias.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/categorias.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/estabelecimentos.handlebars" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.handlebars" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/partials/_navibar.handlebars" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/_navibar.handlebars" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,11 +50,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/admin" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marcu\Desktop\Cadstabs\views\admin" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\public\css" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\public" />
       <recent name="C:\Users\marcu\Desktop\Cadstabs\views\images" />
@@ -88,7 +81,7 @@
       <workItem from="1583103516608" duration="10278000" />
       <workItem from="1583149586278" duration="11365000" />
       <workItem from="1583172375821" duration="67000" />
-      <workItem from="1583172497563" duration="9357000" />
+      <workItem from="1583172497563" duration="15257000" />
     </task>
     <servers />
   </component>
