@@ -8,7 +8,6 @@ const Estabelecimento = new Schema({
     },
     nomeFantasia: {
         type: String,
-        required: true
     },
     cnpj: {
         type: Number,
@@ -16,23 +15,18 @@ const Estabelecimento = new Schema({
     },
     email: {
         type: String,
-        required: true
     },
     endereco: {
         type: String,
-        required: true
     },
     cidade: {
         type: String,
-        required: true
     },
     estado: {
         type: String,
-        required: true
     },
     telefone: {
         type: Number,
-        required: true
     },
     dataCadastro: {
         type: Date,
@@ -49,11 +43,9 @@ const Estabelecimento = new Schema({
     },
     agencia: {
         type: Number,
-        required: true
     },
     conta: {
         type: Number,
-        required: true
     }
 });
 

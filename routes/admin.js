@@ -40,7 +40,7 @@ router.use(express.static('views/images'));
     //
 
         router.get("/categorias", eAdmin, (req, res) => {
-            Categoria.find().sort({ date: 'desc' }).then((categorias) => {
+            Categoria.find().sort({ nome: 'asc' }).then((categorias) => {
                 res.render("admin/categorias", {categorias: categorias});
             }).catch((err) => {
                 console.log(err);
@@ -74,12 +74,12 @@ router.use(express.static('views/images'));
                 };
                 new Categoria(novaCategoria).save().then(() => {
                     req.flash("success_msg", "Categoria criada com sucesso!");
-                    res.redirect("/admin/categorias");
+                    res.redirect("/usuario/categorias");
                     console.log("Categoria salva com sucesso!");
                 }).catch((err) => {
                     console.log(err);
                     req.flash("error_msg", "Houve um erro ao salvar a categoria, tente novamente!");
-                    res.redirect("/admin/categorias");
+                    res.redirect("/usuario/categorias");
                 });
             }
         });
@@ -90,7 +90,7 @@ router.use(express.static('views/images'));
             }).catch((err) => {
                 console.log(err);
                 req.flash("error_msg", "Esta categoria não existe");
-                res.redirect("/admin/categorias");
+                res.redirect("/usuario/categorias");
             });
         });
 
@@ -307,7 +307,7 @@ router.use(express.static('views/images'));
 
     router.get("/logout", (req, res) => {
         req.logout();
-        req.flash('success_msg', "Deslogando com sucesso!");
+        req.flash('success_msg', "Deslogado com sucesso!");
         res.redirect("/")
     });
 

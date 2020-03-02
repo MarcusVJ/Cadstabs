@@ -11,7 +11,7 @@
     <hr>
     <div class="card">
         <div class="card-body">
-            <form action="/admin/categorias/nova" method="POST">
+            <form action="/usuario/categorias/nova" method="POST">
                 <label for="nome">Nome: </label>
                 <input type="text" id="nome" name="nome" placeholder="Nome da categoria" class="form-control" onkeyup="sync()" autocomplete="off">
                 <label for="slug">Slug: </label>
@@ -27,6 +27,7 @@
 </div>
 
 <script>
+    //capta o o valor do campo 'nome' e joga conforme é digitado em letra minuscula e sem acentos ou espaços no campo 'slug'
     function sync()
     {
         n1 = document.getElementById('nome');
